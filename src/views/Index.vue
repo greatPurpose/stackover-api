@@ -17,7 +17,7 @@
 
                 <div class="md-list-item-text" @click="showQueryModal(item)">
                   <span>{{ item.owner.display_name }}</span>
-                  <span>{{ item.creation_date }}</span>
+                  <span>{{ convertDate(item.creation_date) }}</span>
                   <p>{{ item.title }}</p>
                 </div>
               </md-list-item>
@@ -91,6 +91,9 @@ export default {
     },
     isDrawLine(index) {
       return this.queries.length > 1 && index < this.queries.length - 1;
+    },
+    convertDate(num) {
+      return new Date(1000 * num).toISOString().slice(0, 10);
     },
     showQueryModal(item) {
       this.modal.title = item.title;
